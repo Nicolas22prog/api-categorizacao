@@ -1,0 +1,12 @@
+com\mycompany\categorias\mercado\CategoriasResource.class
+com\mycompany\categorias\mercado\Produtos.class
+com\mycompany\categorias\mercado\Categorias.class
+com\mycompany\categorias\mercado\JakartaRestConfiguration.class
+com\mycompany\categorias\mercado\resources\JakartaEE10Resource.class
+com\mycompany\categorias\mercado\ProdutosDTO.class
+com\mycompany\categorias\mercado\ProdutosResource.class
+com\mycompany\categorias\mercado\ProdutosWrapperDTO.class
+com\mycompany\categorias\mercado\CategoriaDTO.class
+com\mycompany\categorias\mercado\CategoriasService.class
+com\mycompany\categorias\mercado\ProdutosService.class
+com\mycompany\categorias\mercado\CategoriasService$1.class
