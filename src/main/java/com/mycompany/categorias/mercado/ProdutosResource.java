@@ -39,13 +39,15 @@ public class ProdutosResource {
  @Transactional
  public Response importarProdutos() { 
   List<Categorias> categorias = em.createQuery("SELECT c FROM Categorias c", Categorias.class).getResultList();
+  
   for(Categorias categoria : categorias){
        List<String> idsExistentes = em.createQuery(
             "SELECT p.id FROM Produtos p ", String.class)
             .getResultList();
       List<Produtos> produtos = ps.importarProdutos(categoria.getId());
       for(Produtos produto : produtos) {
-          if(idsExistentes!= dto) {
+          Produtos existente = em.find(Produtos.class, produto.getId());
+          if(existente == null) {
           em.persist(produto);
       }}
   }

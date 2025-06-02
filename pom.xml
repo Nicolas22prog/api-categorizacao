@@ -25,6 +25,12 @@
     <version>2.17.2</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>13.0.6</version>
+    <classifier>jakarta</classifier>
+</dependency>
     </dependencies>
     
     <build>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      
+      xmlns:f="jakarta.faces.core">
+    <head>
+        <title>Categorias</title>
+        
+    </head>
+    <body>
+        <h:form>
+            <p:panel header="Escolha uma categoria">
+                
+                <p:selectOneMenu value="#{produtosBean.categoriaSelecionada}">
+                    <f:selectItem itemLabel="Selecione uma categoria" itemValue=""/>
+                    <f:selectItems value="#{produtosBean.categorias}" var="c" 
+                                   itemLabel="#{c.name}" itemValue="#{c.id}"/>
+                </p:selectOneMenu>
+                
+                
+                <p:commandButton value="Buscar" actionListener="#{produtosBean.filtrar}" 
+                                 update="tabela" icon="pi pi-search" style="margin-left: 10px" />
+            </p:panel>
+            <p:outputPanel id="tabela" style="margin-top:20px">
+                <p:dataTable value="#{produtosBean.produtosFiltrados}" var="produtos"
+                             rendered="#{not empty produtosBean.produtosFiltrados}">
+                             
+                    <p:column headerText="Nome">
+                        #{produtos.title}
+                    </p:column>
+                    <p:column headerText="Preço">
+                        #{produtos.price}
+                    </p:column>
+                    <p:column headerText="Link">
+                        <h:outputLink value="#{produtos.permaLink}" target="_blank"> Ver Produtos no Mercado Livre</h:outputLink>
+                    </p:column>
+                </p:dataTable>
+                             
+               
+            </p:outputPanel>
+            
+        </h:form>
+    </body>
+</html>

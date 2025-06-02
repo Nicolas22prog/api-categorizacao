@@ -33,7 +33,7 @@ public class ProdutosService {
    
     
     public List<Produtos> importarProdutos(String categoriaId){
-        String token = "APP_USR-8021611602487823-053011-0f6980901ee114c4b4bab916876ce354-445066511";
+        String token = "APP_USR-8021611602487823-060207-ebfd99b8cdb6b1d5d4dcdab5c9f89bff-445066511";
         
         WebTarget target = client.target(URL_BASE)
                 .queryParam("category", categoriaId)
@@ -85,5 +85,23 @@ public class ProdutosService {
         
         p.setMain_category(categoria);
         return p;
+    }
+    
+
+    
+ 
+    
+    public List<Produtos> busarPorCategoria(String categoriaId) {
+        return em.createQuery(
+        "SELECT p FROM Produtos p " +
+                "JOIN FETCH p.main_category c " +
+                "WHERE c.id = :categoriaId " +
+                "ORDER BY p.order_backend ASC", Produtos.class).setParameter("categoriaId", categoriaId)
+                .getResultList();
+    }
+    
+    public List<Categorias> listarCategorias(){
+        return em.createQuery("SELECT c FROM Categorias c ORDER BY c.name", Categorias.class).getResultList();
+
     }
 }

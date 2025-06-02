@@ -26,7 +26,7 @@ public class CategoriasService {
     private ObjectMapper mapper = new ObjectMapper();
     
     public List<Categorias> importarCategorias(){
-        String token = "APP_USR-8021611602487823-053011-0f6980901ee114c4b4bab916876ce354-445066511";
+        String token = "APP_USR-8021611602487823-060207-ebfd99b8cdb6b1d5d4dcdab5c9f89bff-445066511";
         WebTarget target = client.target(URL_BASE);
         
         Response response = target

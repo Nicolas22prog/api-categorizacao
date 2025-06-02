@@ -9,4 +9,5 @@ com\mycompany\categorias\mercado\ProdutosWrapperDTO.class
 com\mycompany\categorias\mercado\CategoriaDTO.class
 com\mycompany\categorias\mercado\CategoriasService.class
 com\mycompany\categorias\mercado\ProdutosService.class
+com\mycompany\categorias\mercado\ProdutosBean.class
 com\mycompany\categorias\mercado\CategoriasService$1.class
