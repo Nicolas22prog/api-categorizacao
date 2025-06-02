@@ -10,6 +10,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -25,8 +26,6 @@ public class ProdutosResource {
     
     @Inject
     private ProdutosService ps;
-    @Inject 
-     private ProdutosDTO dto;
     
     @GET
     @Transactional
@@ -34,16 +33,13 @@ public class ProdutosResource {
     public List<Produtos> listar(){
         return em.createQuery("SELECT p FROM Produtos p JOIN FETCH p.main_category",Produtos.class).getResultList();
     }
- @POST 
+ @POST
  @Path("/importar")
  @Transactional
  public Response importarProdutos() { 
   List<Categorias> categorias = em.createQuery("SELECT c FROM Categorias c", Categorias.class).getResultList();
   
   for(Categorias categoria : categorias){
-       List<String> idsExistentes = em.createQuery(
-            "SELECT p.id FROM Produtos p ", String.class)
-            .getResultList();
       List<Produtos> produtos = ps.importarProdutos(categoria.getId());
       for(Produtos produto : produtos) {
           Produtos existente = em.find(Produtos.class, produto.getId());

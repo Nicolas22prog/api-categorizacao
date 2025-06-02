@@ -26,7 +26,9 @@
             <p:outputPanel id="tabela" style="margin-top:20px">
                 <p:dataTable value="#{produtosBean.produtosFiltrados}" var="produtos"
                              rendered="#{not empty produtosBean.produtosFiltrados}">
-                             
+                    <p:column headerText="Ordem de venda">
+                        #{produtos.order_backend}
+                    </p:column>        
                     <p:column headerText="Nome">
                         #{produtos.title}
                     </p:column>

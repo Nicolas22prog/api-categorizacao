@@ -4,11 +4,8 @@
  */
 package com.mycompany.categorias.mercado;
 
-
+import jakarta.enterprise.context.RequestScoped;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.ws.rs.client.Client;
@@ -20,10 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApplicationScoped
+@RequestScoped
 public class ProdutosService {
-    @Inject
-    private CategoriasResource cr;
     
     
     private static final String URL_BASE = "https://api.mercadolibre.com/sites/MLB/search?";
@@ -33,7 +28,7 @@ public class ProdutosService {
    
     
     public List<Produtos> importarProdutos(String categoriaId){
-        String token = "APP_USR-8021611602487823-060207-ebfd99b8cdb6b1d5d4dcdab5c9f89bff-445066511";
+        String token = "APP_USR-8021611602487823-060211-33cefb8e30c743be10170c5120a0bae3-445066511";
         
         WebTarget target = client.target(URL_BASE)
                 .queryParam("category", categoriaId)
@@ -62,9 +57,7 @@ public class ProdutosService {
                     Produtos produto = converterParaProduto(dto);
                 produtos.add(produto);
                 }
-                
-                
-            
+                       
             return produtos;
             
         } catch (IOException e) {
