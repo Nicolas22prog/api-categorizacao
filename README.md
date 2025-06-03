@@ -49,7 +49,10 @@ Este projeto é uma aplicação backend em Java para importar, armazenar e exibi
 
 ## Configurações
 
-- O token de acesso à API do Mercado Livre está atualmente fixo no código (variável `token`). Substitua pelo seu token válido, se necessário.
+- Crie um arquivo `src/main/resources/config.properties` com o seguinte conteúdo:
+
+   - mercadolivre.token=SEU_TOKEN_AQUI
+
 - Ajuste o tamanho do limite de produtos e filtros conforme sua necessidade no serviço `ProdutosService`.
 
 ---
