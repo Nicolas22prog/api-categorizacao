@@ -9,8 +9,10 @@ import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @RequestScoped
 public class ProdutosService {
@@ -26,7 +28,7 @@ public class ProdutosService {
 */){
         // Token de acesso da API do Mercado Livre (exemplo; ideal usar de forma segura)
 
-        String token = "";
+        String token = carregarToken();
         
         
         
@@ -34,7 +36,7 @@ public class ProdutosService {
                 
         WebTarget target = client.target(URL_BASE)
                 .queryParam("category", categoriaId)
-                .queryParam("limit", 20)
+                .queryParam("limit", 50)
                 .queryParam("sort","sold_quantity_desc");
         
         try(Response response = target
@@ -108,4 +110,15 @@ public class ProdutosService {
         return em.createQuery("SELECT c FROM Categorias c ORDER BY c.name", Categorias.class).getResultList();
 
     }
+    
+    
+     private String carregarToken(){
+        try(InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")){
+            Properties props = new Properties();
+            props.load(input);
+            return props.getProperty("mercadolivre.token");
+        }catch (Exception e) {
+        throw new RuntimeException("Erro ao carregar token da configuração", e);
+    }
+    } 
 }
