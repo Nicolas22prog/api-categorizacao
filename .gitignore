@@ -1,0 +1,41 @@
+# Ignore arquivos de build
+/target/
+/build/
+
+# Ignora arquivos temporários do NetBeans
+nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.swp
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração sensível
+src/main/resources/config.properties
+
+# IDEs
+/.idea/
+/*.iml
+*.class
+
+# Arquivos de cache e backup
+*.bak
+*.old
+*.orig
+
+# Evitar o .env ou arquivos com tokens
+.env
+*.secret
+*.key
+*.pem
+
+# Arquivos gerados por testes
+/test-output/
+
