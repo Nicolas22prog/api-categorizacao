@@ -26,8 +26,7 @@ public class ProdutosService {
     
     public List<Produtos> importarProdutos(String categoriaId /* ID da categoria, recebido da interface, referente às categorias cadastradas no banco de dados
 */){
-        // Token de acesso da API do Mercado Livre (exemplo; ideal usar de forma segura)
-
+        // Token de acesso da API do Mercado Livre
         String token = carregarToken();
         
         
@@ -50,6 +49,7 @@ public class ProdutosService {
         //Lê o Json retornado pela api 
         String json = response.readEntity(String.class);
             System.out.println("Importando json" + json);
+            
         try{
             // Converte os dados do JSON em objetos DTO e os armazena em uma lista
 
@@ -77,7 +77,6 @@ public class ProdutosService {
     private EntityManager em;
     
     // Método que converte um DTO em um objeto Produtos, associando à categoria correspondente
-
     private Produtos converterParaProduto(ProdutosDTO dto) {
         Produtos p = new Produtos();
         p.setId(dto.getId());
@@ -92,24 +91,7 @@ public class ProdutosService {
     }
     
     
-    // Busca produtos filtrando pela categoria selecionada na interface do usuário (usado em ProdutosBean.java)
-
-    public List<Produtos> busarPorCategoria(String categoriaId) {
-        return em.createQuery(
-        "SELECT p FROM Produtos p " +
-                "JOIN FETCH p.main_category c " +
-                "WHERE c.id = :categoriaId " +
-                "ORDER BY p.order_backend ASC", Produtos.class).setParameter("categoriaId", categoriaId)
-                .getResultList();
-    }
-    
-    
-    // Retorna a lista de categorias cadastradas, usada para preencher a interface do usuário (em ProdutosBean.java)
-
-    public List<Categorias> listarCategorias(){
-        return em.createQuery("SELECT c FROM Categorias c ORDER BY c.name", Categorias.class).getResultList();
-
-    }
+   
     
     
      private String carregarToken(){

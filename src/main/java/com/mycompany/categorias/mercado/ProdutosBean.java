@@ -18,9 +18,10 @@ import java.util.List;
 @ViewScoped // O bean vive enquanto o usuário estiver na mesma página (view)
 public class ProdutosBean implements Serializable {
 
+// Injeta o serviço que contém a lógica de acesso a produtos e categorias
     @Inject
-    private ProdutosService ps; // Injeta o serviço que contém a lógica de acesso a produtos e categorias
-
+    private ProdutosBeanServices pbs;
+    
     private String categoriaSelecionada; // Categoria escolhida pelo usuário na interface
     private List<Categorias> categorias; // Lista de categorias disponíveis para seleção
     private List<Produtos> produtosFiltrados; // Produtos filtrados com base na categoria selecionada
@@ -31,7 +32,7 @@ public class ProdutosBean implements Serializable {
      */
     @PostConstruct
     public void init() {
-        categorias = ps.listarCategorias(); // Carrega todas as categorias do banco
+        categorias = pbs.listarCategorias(); // Carrega todas as categorias do banco
     }
 
     /**
@@ -41,7 +42,7 @@ public class ProdutosBean implements Serializable {
     public void filtrar() {
         if (categoriaSelecionada != null && !categoriaSelecionada.isEmpty()) {
             // Se uma categoria foi selecionada, filtra os produtos por essa categoria
-            produtosFiltrados = ps.busarPorCategoria(categoriaSelecionada);
+            produtosFiltrados = pbs.busarPorCategoria(categoriaSelecionada);
         } else {
             // Se nenhuma categoria foi selecionada, limpa a lista de produtos filtrados
             produtosFiltrados = null;
