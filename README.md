@@ -72,4 +72,4 @@ Para dúvidas ou contribuições, abra uma issue no repositório ou envie um pul
 
 ---
 
-**Licença:** MIT License (ou sua licença preferida)
+**Licença:** MIT License
