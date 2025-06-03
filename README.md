@@ -1,75 +1,144 @@
-# Mercado Livre Categorias e Produtos - API Java
+# 🛒 API de Categorização de Produtos - Mercado Livre
 
-Este projeto é uma aplicação backend em Java para importar, armazenar e exibir categorias e produtos do Mercado Livre utilizando a API pública do Mercado Livre. A aplicação utiliza Jakarta EE, JPA, JAX-RS e JSF para gerenciamento, persistência e interface.
-
----
-
-## Funcionalidades
-
-- Importação das categorias do Mercado Livre via API REST.
-- Importação dos produtos de cada categoria cadastrada no banco.
-- Persistência das categorias e produtos em banco de dados relacional via JPA.
-- API REST para listagem de categorias e produtos.
-- Interface JSF para filtragem e visualização dos produtos por categoria.
+Este projeto Java EE expõe uma API REST que integra com o Mercado Livre para importar e armazenar **categorias** e **produtos**, permitindo consultas otimizadas e organizadas por categoria.
 
 ---
 
-## Tecnologias Utilizadas
+## 📦 Tecnologias Utilizadas
 
-- Java 17+
-- Jakarta EE (JPA, CDI, JAX-RS, Transactions)
-- Jackson e Gson para JSON parsing
-- JPA (EclipseLink/Hibernate) para persistência
-- JSF para interface web
-- Banco de dados relacional (ex: PostgreSQL, MySQL)
-- Maven para gerenciamento de dependências e build
-
----
-
-## Estrutura do Projeto
-
-- `Categorias` — Entidade JPA para categorias
-- `Produtos` — Entidade JPA para produtos
-- `CategoriaDTO` e `ProdutosDTO` — Classes DTO para deserialização do JSON da API Mercado Livre
-- `CategoriasService` e `ProdutosService` — Serviços para importar dados da API e converter para entidades
-- `CategoriasResource` e `ProdutosResource` — Endpoints REST para gerenciamento e importação
-- `ProdutosBean` — Managed Bean JSF para filtrar e exibir produtos na interface
+- Java 17
+- Jakarta EE (CDI, JPA, JAX-RS)
+- Hibernate / JPA
+- JSF (interface opcional)
+- Gson & Jackson (JSON parsing)
+- H2 / MySQL (ajustável)
+- Maven
 
 ---
 
-## Como usar
+## 🚀 Funcionalidades
 
-1. Configure o banco de dados e ajuste o `persistence.xml` para conectar-se ao seu banco.
-2. Faça o deploy da aplicação em um servidor Jakarta EE (ex: Payara, WildFly, TomEE).
-3. Acesse o endpoint REST para importar categorias:
-4. Acesse o endpoint REST para importar produtos das categorias cadastradas:
-5. Utilize a interface JSF para filtrar produtos por categoria.
-
----
-
-## Configurações
-
-- Crie um arquivo `src/main/resources/config.properties` com o seguinte conteúdo:
-
-   - mercadolivre.token=SEU_TOKEN_AQUI
-
-- Ajuste o tamanho do limite de produtos e filtros conforme sua necessidade no serviço `ProdutosService`.
+- 🔄 Importação de categorias diretamente da API do Mercado Livre
+- 🔄 Importação de produtos por categoria
+- ✅ Armazenamento em banco de dados com validação para evitar duplicatas
+- 📋 Listagem de produtos com filtro por categoria
+- 📁 Integração com interface JSF (ViewScoped Bean)
 
 ---
 
-## Melhorias Futuras
+## 🔧 Configuração do Ambiente
 
-- Implementar paginação dos produtos na interface.
-- Salvar dados de forma incremental para evitar duplicações e otimizar atualizações.
-- Autenticação e segurança nos endpoints REST.
-- Testes automatizados e integração contínua.
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/Nicolas22prog/api-categorizacao.git
+cd api-categorizacao
+```
+
+### 2. Configuração de ambiente
+
+Crie o arquivo `config.properties` em `src/main/resources`:
+
+```
+mercadolivre.token=SEU_TOKEN_AQUI
+```
+
+> 🔒 Este arquivo está no `.gitignore` por segurança.
 
 ---
 
-## Contato
+### 3. Configurar banco de dados (opcional)
 
-Para dúvidas ou contribuições, abra uma issue no repositório ou envie um pull request.
+Por padrão, você pode usar H2 em memória para testes.  
+Para produção, altere o `persistence.xml` para usar MySQL ou outro banco de sua escolha.
 
 ---
 
-**Licença:** MIT License
+## ▶️ Executando o Projeto
+
+Você pode executar a aplicação em um servidor compatível com Jakarta EE:
+
+### Ex: Payara, Wildfly, GlassFish
+
+1. Empacote com Maven:
+
+```bash
+mvn clean package
+```
+
+2. Faça o deploy do `.war` no seu servidor de aplicação.
+
+---
+
+## 📡 Endpoints da API REST
+
+### Listar produtos
+
+```
+GET /produtos
+```
+
+> Lista todos os produtos importados com suas categorias
+
+---
+
+### Importar produtos de todas as categorias
+
+```
+POST /produtos/importar
+```
+
+> Para cada categoria no banco, importa os produtos da API do Mercado Livre
+
+---
+
+## 🧠 Estrutura do Projeto
+
+```
+com.mycompany.categorias.mercado
+├── controller     # Endpoints REST
+├── service        # Regras de negócio
+├── dto            # DTOs para comunicação com APIs externas
+├── entity         # Entidades JPA
+├── view           # JSF Managed Beans (UI)
+├── config         # Configurações como TokenConfig
+├── util           # Utilitários e auxiliares
+```
+
+---
+
+## 🧪 Testes
+
+Em breve serão adicionados testes de integração com JUnit e H2.
+
+---
+
+## ✅ Próximas melhorias
+
+- Swagger/OpenAPI para documentação automática da API
+- Scheduler para importação periódica de produtos
+- Sistema de cache para evitar requisições desnecessárias
+- Autenticação com JWT
+
+---
+
+## 🤝 Contribuindo
+
+1. Fork este repositório
+2. Crie sua branch: `git checkout -b feature/minha-feature`
+3. Commit suas alterações: `git commit -m 'Minha feature'`
+4. Push para sua branch: `git push origin feature/minha-feature`
+5. Abra um Pull Request 🚀
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 🙋 Autor
+
+Desenvolvido por **Nicolas22prog**  
+GitHub: [@Nicolas22prog](https://github.com/Nicolas22prog)
