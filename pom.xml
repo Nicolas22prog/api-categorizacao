@@ -41,6 +41,12 @@
     <version>13.0.6</version>
     <classifier>jakarta</classifier>
 </dependency>
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.11.0</version>
+    <type>jar</type>
+</dependency>
     </dependencies>
     
     <build>

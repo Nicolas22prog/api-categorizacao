@@ -40,7 +40,8 @@ public class ProdutosResource {
   List<Categorias> categorias = em.createQuery("SELECT c FROM Categorias c", Categorias.class).getResultList();
   
   for(Categorias categoria : categorias){
-      List<Produtos> produtos = ps.importarProdutos(categoria.getId());
+                                                                        
+      List<Produtos> produtos = ps.importarProdutos(categoria.getId()); //<--- aqui é onde o metodo importarProdutos recebe os Ids das categorias cadastradas no banco de dados
       for(Produtos produto : produtos) {
           Produtos existente = em.find(Produtos.class, produto.getId());
           if(existente == null) {
