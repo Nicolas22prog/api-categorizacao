@@ -13,9 +13,10 @@ import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import com.mycompany.categorias.mercado.config.TokenConfig;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 @RequestScoped
@@ -26,12 +27,12 @@ public class ProdutosService {
     
     
     private ObjectMapper mapper = new ObjectMapper();
-    private TokenConfig tc;
+    
     
     public List<Produtos> importarProdutos(String categoriaId /* ID da categoria, recebido da interface, referente às categorias cadastradas no banco de dados
 */){
         // Token de acesso da API do Mercado Livre
-        String token = tc.getToken();
+        String token = carregarToken();
         
         
         
@@ -95,7 +96,14 @@ public class ProdutosService {
     
     
    
-    
+    public String carregarToken(){
+        try(InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")){
+            Properties props = new Properties();
+            props.load(input);
+            return props.getProperty("mercadolivre.token");
+        }catch (Exception e) {
+        throw new RuntimeException("Erro ao carregar token da configuração", e);
+    }
     
      
-}
+    }}

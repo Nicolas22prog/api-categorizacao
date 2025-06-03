@@ -32,7 +32,7 @@ public class CategoriasResource {
      * Retorna apenas os IDs das categorias cadastradas no banco.
      * Útil para uso interno ou testes.
      */
-    
+    @GET
     public List<String> listarIds() {
         return em.createQuery("SELECT c.id FROM Categorias c", String.class)
                  .getResultList();

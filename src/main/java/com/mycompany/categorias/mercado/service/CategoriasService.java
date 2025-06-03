@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mycompany.categorias.mercado.dto.CategoriaDTO;
 import com.mycompany.categorias.mercado.entity.Categorias;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -24,7 +25,9 @@ import java.util.List;
 @RequestScoped
 public class CategoriasService {
     private static final String URL_BASE = "https://api.mercadolibre.com/sites/MLB/categories";
- 
+    
+    @Inject
+    private ProdutosService ps;
     
     
     public List<Categorias> importarCategorias(){
@@ -32,7 +35,7 @@ public class CategoriasService {
         
         // Token de acesso da API do Mercado Livre
 
-        String token = "APP_USR-8021611602487823-060307-662d87ba6d0fc8f86e5023a5667e85c1-445066511";       
+        String token = ps.carregarToken();       
         
      /**
  * Importa categorias do Mercado Livre via API.
@@ -87,8 +90,10 @@ public class CategoriasService {
 
     @Transactional
     public void salvarCategorias(List<Categorias> categorias){
-        for(Categorias c: categorias) {            
-            em.persist(c);
+        for(Categorias c: categorias) {  
+           
+                em.persist(c);
+            }
         }
     }       
-    }
+
