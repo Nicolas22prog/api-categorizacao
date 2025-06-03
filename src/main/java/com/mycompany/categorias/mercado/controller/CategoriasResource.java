@@ -43,6 +43,8 @@ public class CategoriasResource {
      * A anotação @Transactional garante que todas as operações sejam feitas em uma transação.
      * URL: /categorias/importar
      */
+    
+    
     @GET
     @Path("/importar")
     @Transactional
