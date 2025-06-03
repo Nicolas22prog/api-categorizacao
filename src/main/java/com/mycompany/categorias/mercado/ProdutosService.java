@@ -26,7 +26,7 @@ public class ProdutosService {
 */){
         // Token de acesso da API do Mercado Livre (exemplo; ideal usar de forma segura)
 
-        String token = "APP_USR-8021611602487823-060307-662d87ba6d0fc8f86e5023a5667e85c1-445066511";
+        String token = "";
         
         
         
