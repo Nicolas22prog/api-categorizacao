@@ -7,9 +7,6 @@ package com.mycompany.categorias.mercado;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonValue;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -31,13 +28,15 @@ public class CategoriasService {
     public List<Categorias> importarCategorias(){
         
         
-        //salva o token em uma variavel
+        // Token de acesso da API do Mercado Livre
+
         String token = "APP_USR-8021611602487823-060307-662d87ba6d0fc8f86e5023a5667e85c1-445066511";       
         
-        /**
-     * Importa categorias do Mercado Livre via API.
-     * @return Lista de categorias convertidas do JSON da API
-     */
+     /**
+ * Importa categorias do Mercado Livre via API.
+ * @return Lista de categorias convertidas do JSON da API
+ */
+
         
         try(Client client = ClientBuilder.newClient()){
         WebTarget target = client.target(URL_BASE);
@@ -49,9 +48,8 @@ public class CategoriasService {
         throw new RuntimeException("Erro ao buscar categorias do Mercado Livre, status: " + response.getStatus());
         }
         
-           /*Ler o json com as categorias retornado da API do mercado livre
-            *Retorna uma lista com as categorias
-            */
+// Lê o JSON com as categorias retornado pela API do Mercado Livre e o converte em uma lista de DTOs
+
             String json = response.readEntity(String.class);
             System.out.println("Resposta Json recebida" + json);
             Gson gson = new Gson();
@@ -70,7 +68,8 @@ public class CategoriasService {
         }
         } 
    
-//converte as categorias em objeto Categoria para salvar no banco de dados
+// Converte o DTO em um objeto Categorias para persistência no banco de dados
+
     public Categorias converterParaCategoria(CategoriaDTO dto) {
         Categorias c = new Categorias();
         c.setId(dto.getId());
@@ -82,14 +81,12 @@ public class CategoriasService {
     @PersistenceContext
     private EntityManager em;
    
-// salva as categorias no banco de dados   
+// Salva a lista de categorias no banco de dados
+
     @Transactional
     public void salvarCategorias(List<Categorias> categorias){
-        for(Categorias c: categorias) {
-            
+        for(Categorias c: categorias) {            
             em.persist(c);
         }
+    }       
     }
-        
-    }
-

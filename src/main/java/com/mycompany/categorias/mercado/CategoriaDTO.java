@@ -6,13 +6,33 @@ package com.mycompany.categorias.mercado;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+/**
+ * DTO (Data Transfer Object) usado para representar os dados das categorias
+ * recebidos da API do Mercado Livre.
+ */
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignora campos desconhecidos no JSON recebido
 public class CategoriaDTO {
-        private String id;
-        private String name;
-    
-    public String getId(){return id;}
-    public void setId(String id) {this.id=id;}
-    public String getName(){return name;}
-    public void setName(String name){this.name=name;}
+
+    // Identificador da categoria
+    private String id;
+
+    // Nome da categoria
+    private String name;
+
+    // Getters e Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
