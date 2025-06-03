@@ -72,24 +72,26 @@ mvn clean package
 
 ## 📡 Endpoints da API REST
 
+### Importar as categorias
+
+```
+GET /categorias/importar
+```
+
+
+
+---
 ### Listar produtos
 
 ```
 GET /produtos
 ```
 
-> Lista todos os produtos importados com suas categorias
-
----
-
-### Importar produtos de todas as categorias
-
+### Importar produtos
 ```
 POST /produtos/importar
 ```
-
 > Para cada categoria no banco, importa os produtos da API do Mercado Livre
-
 ---
 
 ## 🧠 Estrutura do Projeto
