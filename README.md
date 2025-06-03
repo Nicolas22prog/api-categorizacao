@@ -42,3 +42,31 @@ Este projeto é uma aplicação backend em Java para importar, armazenar e exibi
 1. Configure o banco de dados e ajuste o `persistence.xml` para conectar-se ao seu banco.
 2. Faça o deploy da aplicação em um servidor Jakarta EE (ex: Payara, WildFly, TomEE).
 3. Acesse o endpoint REST para importar categorias:
+4. Acesse o endpoint REST para importar produtos das categorias cadastradas:
+5. Utilize a interface JSF para filtrar produtos por categoria.
+
+---
+
+## Configurações
+
+- O token de acesso à API do Mercado Livre está atualmente fixo no código (variável `token`). Substitua pelo seu token válido, se necessário.
+- Ajuste o tamanho do limite de produtos e filtros conforme sua necessidade no serviço `ProdutosService`.
+
+---
+
+## Melhorias Futuras
+
+- Implementar paginação dos produtos na interface.
+- Salvar dados de forma incremental para evitar duplicações e otimizar atualizações.
+- Autenticação e segurança nos endpoints REST.
+- Testes automatizados e integração contínua.
+
+---
+
+## Contato
+
+Para dúvidas ou contribuições, abra uma issue no repositório ou envie um pull request.
+
+---
+
+**Licença:** MIT License (ou sua licença preferida)
