@@ -79,6 +79,8 @@ public class ProdutosResource {
                 // Se não existir, persiste o novo produto
                 if (existente == null) {
                     em.persist(produto);
+                } else{
+                    em.merge(existente);
                 }
             }
         }

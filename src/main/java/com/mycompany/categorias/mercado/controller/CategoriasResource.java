@@ -49,11 +49,28 @@ public class CategoriasResource {
     @Path("/importar")
     @Transactional
     public Response importarESalvarCategorias() {
-        List<Categorias> categorias = cs.importarCategorias(); // Busca via API do Mercado Livre
-        cs.salvarCategorias(categorias); // Salva as categorias no banco
-    
-        // Reorna uma resposta de sucesso 
-        return Response.ok("Categorias importadas com sucesso").build();
+        try{
+            List<Categorias> categorias = cs.importarCategorias();
+            
+            for(Categorias categoria : categorias) {
+                Categorias existente = em.find(Categorias.class, categoria.getId());
+                
+                if (existente == null) {
+                    Categorias nova = new Categorias();
+                    nova.setId(categoria.getId());
+                    nova.setName(categoria.getName());
+                    em.persist(nova);
+                } else {
+                    if(!existente.getName().equals(categoria.getName())){
+                    existente.setName(categoria.getName());
+                    
+                    }
+                  }
+            }
+                 return Response.ok("Importação concluida, importado : " + categorias).build();
+        } catch (Exception e){
+            e.printStackTrace();
+            return Response.serverError().entity("Erro ao importar categorias: " + e.getMessage()).build();
+          }
     }
-    
 }

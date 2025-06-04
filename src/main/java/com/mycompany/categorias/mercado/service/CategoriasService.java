@@ -81,19 +81,5 @@ public class CategoriasService {
         c.setName(dto.getName());
         
         return c;
-    }
-    
-    @PersistenceContext
-    private EntityManager em;
-   
-// Salva a lista de categorias no banco de dados
-
-    @Transactional
-    public void salvarCategorias(List<Categorias> categorias){
-        for(Categorias c: categorias) {  
-           
-                em.persist(c);
-            }
-        }
+    }      
     }       
-
