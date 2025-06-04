@@ -28,7 +28,10 @@
                              rendered="#{not empty produtosBean.produtosFiltrados}">
                     <p:column headerText="Ordem de venda">
                         #{produtos.order_backend}
-                    </p:column>        
+                    </p:column>
+                    <p:column headerText="Imagem">
+                        <p:graphicImage value="#{produtos.thumbnail}"/>
+                    </p:column>
                     <p:column headerText="Nome">
                         #{produtos.title}
                     </p:column>
@@ -38,9 +41,7 @@
                     <p:column headerText="Link">
                         <h:outputLink value="#{produtos.permaLink}" target="_blank"> Ver Produtos no Mercado Livre</h:outputLink>
                     </p:column>
-                </p:dataTable>
-                             
-               
+                </p:dataTable>                                            
             </p:outputPanel>
             
         </h:form>

@@ -88,8 +88,8 @@ public class ProdutosService {
         p.setPermalink(dto.getPermaLink());
         p.setPrice(dto.getPrice());
         p.setOrder_backend(dto.getOrder_backend());
+        p.setThumbnail(dto.getThumbnail());
         Categorias categoria = em.find(Categorias.class,dto.getMain_category());
-        
         p.setMain_category(categoria);
         return p;
     }

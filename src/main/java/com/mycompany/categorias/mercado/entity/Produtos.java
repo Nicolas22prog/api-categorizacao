@@ -28,7 +28,7 @@ public class Produtos {
     private String permalink; // URL do produto no Mercado Livre
     private BigDecimal price; // Preço do produto
     private int order_backend; // Posição do produto com base na ordenação da API
-
+    private String thumbnail;
     /**
      * Relacionamento muitos-para-um com a entidade Categorias.
      * Muitos produtos podem pertencer à mesma categoria.
@@ -86,4 +86,7 @@ public class Produtos {
     public void setOrder_backend(int order_backend) {
         this.order_backend = order_backend;
     }
+    
+    public String getThumbnail(){return thumbnail;}
+    public void setThumbnail(String thumbnail){this.thumbnail=thumbnail;}
 }

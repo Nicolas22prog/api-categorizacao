@@ -33,6 +33,8 @@ public class ProdutosDTO {
     // ID da categoria principal à qual o produto pertence
     private String main_category;
 
+    //link da imagem do produto
+    private String thumbnail;
     // Getters e Setters
 
     public String getId() {
@@ -82,4 +84,7 @@ public class ProdutosDTO {
     public void setMain_category(String categoria) {
         this.main_category = categoria;
     }
+    
+    public String getThumbnail(){return thumbnail;}
+    public void setThumbnail(String thumbnail){this.thumbnail=thumbnail;}
 }
