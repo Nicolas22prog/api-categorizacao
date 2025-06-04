@@ -87,6 +87,10 @@ public class Produtos {
         this.order_backend = order_backend;
     }
     
-    public String getThumbnail(){return thumbnail;}
-    public void setThumbnail(String thumbnail){this.thumbnail=thumbnail;}
+    public String getThumbnail(){
+        return thumbnail;
+    }
+    public void setThumbnail(String thumbnail){
+        this.thumbnail=thumbnail;
+    }
 }
