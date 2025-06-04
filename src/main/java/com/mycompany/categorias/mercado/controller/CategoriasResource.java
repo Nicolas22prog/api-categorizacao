@@ -67,7 +67,7 @@ public class CategoriasResource {
                     }
                   }
             }
-                 return Response.ok("Importação concluida, importado : " + categorias).build();
+                 return Response.ok("Importação concluida" ).build();
         } catch (Exception e){
             e.printStackTrace();
             return Response.serverError().entity("Erro ao importar categorias: " + e.getMessage()).build();
