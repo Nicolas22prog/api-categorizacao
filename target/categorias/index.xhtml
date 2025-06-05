@@ -15,9 +15,13 @@
            
             <div class="selectorContainer">
                 
-            <p:panel header="Escolha uma categoria" class="selector">
-                
-                <p:selectOneMenu value="#{produtosBean.categoriaSelecionada}" id="selecaoCat" >
+            <p:panel class="selector">
+                <div id="title">
+                    Escoha uma categoria
+                </div>
+                <div id="selecaoCat">
+                    
+                <p:selectOneMenu value="#{produtosBean.categoriaSelecionada}" >
                     <f:selectItem itemLabel="Selecione uma categoria" itemValue=""/>
                     <f:selectItems value="#{produtosBean.categorias}" var="c" 
                                    itemLabel="#{c.name}" itemValue="#{c.id}"/>
@@ -26,6 +30,7 @@
                 
                 <p:commandButton value="Buscar" actionListener="#{produtosBean.filtrar}" 
                                  update="tabela" icon="pi pi-search" style="margin-left: 10px" class="btn"/>
+                </div>
             </p:panel>
             </div>     
          
