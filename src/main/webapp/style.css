@@ -8,6 +8,8 @@ body {
                 color: #cccccc;
                 max-height: 10rem;
                 border-radius: .5rem;
+               padding: 1.3rem;
+               margin-top: 0;
             }
             .selector{
                 display: flex;   
@@ -15,7 +17,7 @@ body {
                 justify-content: center;
                 gap: .6rem;
                 font-size: 1.5rem;
-                
+                 margin-top: 1rem;
             }
             #selecaoCat{
                 border:none;
