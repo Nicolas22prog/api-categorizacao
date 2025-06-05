@@ -34,10 +34,10 @@ public class CategoriasService {
 
         String token = ps.carregarToken();       
         
-     /**
- * Importa categorias do Mercado Livre via API.
- * @return Lista de categorias convertidas do JSON da API
- */
+     /*
+      * Importa categorias do Mercado Livre via API.
+      * @return Lista de categorias convertidas do JSON da API
+      */
 
         
         try(Client client = ClientBuilder.newClient()){
@@ -59,8 +59,11 @@ public class CategoriasService {
             List<CategoriaDTO> dtos = gson.fromJson(json, listType);
                 List<Categorias> categorias = new ArrayList<>();
                 for (CategoriaDTO dto : dtos) {
-                    Categorias categoria = converterParaCategoria(dto);
-                    categorias.add(categoria);
+                    // Converte o DTO em um objeto Categorias para persistência no banco de dados
+                    Categorias c = new Categorias();
+                    c.setId(dto.getId());
+                    c.setName(dto.getName());
+                    categorias.add(c);
                 }
                 return categorias;
                     }catch(Exception e) {
@@ -70,13 +73,5 @@ public class CategoriasService {
         }
         } 
    
-// Converte o DTO em um objeto Categorias para persistência no banco de dados
-
-    public Categorias converterParaCategoria(CategoriaDTO dto) {
-        Categorias c = new Categorias();
-        c.setId(dto.getId());
-        c.setName(dto.getName());
-        
-        return c;
-    }      
+     
     }       

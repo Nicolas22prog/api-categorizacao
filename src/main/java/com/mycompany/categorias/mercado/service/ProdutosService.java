@@ -63,8 +63,16 @@ public class ProdutosService {
             // Converte cada DTO em um objeto Produtos usando o método converterParaProduto
 
                 for(ProdutosDTO dto: wrapper.getResults()){
-                    Produtos produto = converterParaProduto(dto);
-                produtos.add(produto);
+                    Produtos p = new Produtos();
+                    p.setId(dto.getId());
+                    p.setTitle(dto.getTitle());
+                    p.setPermalink(dto.getPermaLink());
+                    p.setPrice(dto.getPrice());
+                    p.setOrder_backend(dto.getOrder_backend());
+                    p.setThumbnail(dto.getThumbnail());
+                    Categorias categoria = em.find(Categorias.class,dto.getMain_category());
+                    p.setMain_category(categoria);
+                    produtos.add(p);
                 }
                        
             return produtos;
@@ -80,22 +88,8 @@ public class ProdutosService {
     @PersistenceContext
     private EntityManager em;
     
-    // Método que converte um DTO em um objeto Produtos, associando à categoria correspondente
-    private Produtos converterParaProduto(ProdutosDTO dto) {
-        Produtos p = new Produtos();
-        p.setId(dto.getId());
-        p.setTitle(dto.getTitle());
-        p.setPermalink(dto.getPermaLink());
-        p.setPrice(dto.getPrice());
-        p.setOrder_backend(dto.getOrder_backend());
-        p.setThumbnail(dto.getThumbnail());
-        Categorias categoria = em.find(Categorias.class,dto.getMain_category());
-        p.setMain_category(categoria);
-        return p;
-    }
     
-    
-   
+     
     public String carregarToken(){
         try(InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")){
             Properties props = new Properties();
