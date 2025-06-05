@@ -7,23 +7,17 @@
       xmlns:f="jakarta.faces.core">
     <head>
         <title>Categorias</title>
-        <style>
-            body {
-                font-family: monospace,sans-serif;
-            }
-            .selector{
-                display: flex;              
-                justify-content: center;
-                font-size: 24px;                
-            }
-           
-        </style>
+        <link rel="stylesheet" href="style.css" />
+                 
     </head>
     <body>
-        <h:form class="selector">
-            <p:panel header="Escolha uma categoria">
+        <h:form >
+           
+            <div class="selectorContainer">
                 
-                <p:selectOneMenu value="#{produtosBean.categoriaSelecionada}" >
+            <p:panel header="Escolha uma categoria" class="selector">
+                
+                <p:selectOneMenu value="#{produtosBean.categoriaSelecionada}" id="selecaoCat" >
                     <f:selectItem itemLabel="Selecione uma categoria" itemValue=""/>
                     <f:selectItems value="#{produtosBean.categorias}" var="c" 
                                    itemLabel="#{c.name}" itemValue="#{c.id}"/>
@@ -31,11 +25,16 @@
                 
                 
                 <p:commandButton value="Buscar" actionListener="#{produtosBean.filtrar}" 
-                                 update="tabela" icon="pi pi-search" style="margin-left: 10px" />
+                                 update="tabela" icon="pi pi-search" style="margin-left: 10px" class="btn"/>
             </p:panel>
-            <p:outputPanel id="tabela" style="margin-top:20px">
+            </div>     
+         
+            <div class="produtos">
+                
+            <p:outputPanel id="tabela" >
                 <p:dataTable value="#{produtosBean.produtosFiltrados}" var="produtos"
-                             rendered="#{not empty produtosBean.produtosFiltrados}">
+                             rendered="#{not empty produtosBean.produtosFiltrados}"
+                             >
                     <p:column headerText="Ordem de venda">
                         #{produtos.order_backend}
                     </p:column>
@@ -54,6 +53,7 @@
                 </p:dataTable>                                            
             </p:outputPanel>
             
+            </div>
         </h:form>
     </body>
 </html>
